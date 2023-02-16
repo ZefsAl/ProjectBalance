@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846A8C59299BA23300E832CA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A8C58299BA23300E832CA /* TabBarController.swift */; };
 		846ECA8729700AFE00081984 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ECA8629700AFE00081984 /* MainTableView.swift */; };
 		846ECA892971877700081984 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ECA882971877700081984 /* TableViewCell.swift */; };
 		846ECA8B297191A600081984 /* SupportResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ECA8A297191A600081984 /* SupportResources.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		846A8C58299BA23300E832CA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		846ECA8629700AFE00081984 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		846ECA882971877700081984 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		846ECA8A297191A600081984 /* SupportResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportResources.swift; sourceTree = "<group>"; };
@@ -72,16 +74,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		564D38F7F63DF78C78D8C707 /* Pods */ = {
+		846A8C5A299BACAE00E832CA /* ViewAddWalletVC */ = {
 			isa = PBXGroup;
 			children = (
+				846ECA8E297310B900081984 /* CurrencyPickerView.swift */,
+				848EC196298187B200E75C68 /* PickerTextField.swift */,
 			);
-			path = Pods;
+			path = ViewAddWalletVC;
+			sourceTree = "<group>";
+		};
+		846A8C5B299BAD1700E832CA /* ViewMainVC */ = {
+			isa = PBXGroup;
+			children = (
+				846ECA8629700AFE00081984 /* MainTableView.swift */,
+				846ECA882971877700081984 /* TableViewCell.swift */,
+			);
+			path = ViewMainVC;
 			sourceTree = "<group>";
 		};
 		846ECA822970065300081984 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				846A8C58299BA23300E832CA /* TabBarController.swift */,
 				84C180C9295FD418008CE524 /* MainViewController.swift */,
 				846ECA8C29730BA900081984 /* AddWalletVC.swift */,
 			);
@@ -106,15 +120,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		846ECA8529700A8000081984 /* View */ = {
+		846ECA8529700A8000081984 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				846ECA8629700AFE00081984 /* MainTableView.swift */,
-				846ECA882971877700081984 /* TableViewCell.swift */,
-				846ECA8E297310B900081984 /* CurrencyPickerView.swift */,
-				848EC196298187B200E75C68 /* PickerTextField.swift */,
+				846A8C5B299BAD1700E832CA /* ViewMainVC */,
+				846A8C5A299BACAE00E832CA /* ViewAddWalletVC */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		849F7B71298FF41A009CF77B /* NSManagedObject */ = {
@@ -129,11 +141,8 @@
 		84C180B9295FD418008CE524 = {
 			isa = PBXGroup;
 			children = (
-				84E4924F299A803600481C04 /* Extensions */,
-				849F7B71298FF41A009CF77B /* NSManagedObject */,
 				84C180C4295FD418008CE524 /* CryptoBalance */,
 				84C180C3295FD418008CE524 /* Products */,
-				564D38F7F63DF78C78D8C707 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,23 +159,33 @@
 			children = (
 				84C180C5295FD418008CE524 /* AppDelegate.swift */,
 				84C180C7295FD418008CE524 /* SceneDelegate.swift */,
-				846ECA8529700A8000081984 /* View */,
+				846ECA8529700A8000081984 /* Views */,
 				846ECA822970065300081984 /* Controller */,
 				846ECA832970067600081984 /* Managers */,
 				846ECA842970078200081984 /* Models */,
-				849F7B68298FEE2A009CF77B /* DataStorage.xcdatamodeld */,
-				84C180CE295FD41B008CE524 /* Assets.xcassets */,
-				84C180D0295FD41B008CE524 /* LaunchScreen.storyboard */,
-				84C180D3295FD41B008CE524 /* Info.plist */,
+				84EC2498299E28C600A4CAF6 /* CoreData */,
+				84E49252299BA08A00481C04 /* SupportingFiles */,
 			);
 			path = CryptoBalance;
 			sourceTree = "<group>";
 		};
-		84E4924F299A803600481C04 /* Extensions */ = {
+		84E49252299BA08A00481C04 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				84C180CE295FD41B008CE524 /* Assets.xcassets */,
+				84C180D0295FD41B008CE524 /* LaunchScreen.storyboard */,
+				84C180D3295FD41B008CE524 /* Info.plist */,
 			);
-			path = Extensions;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		84EC2498299E28C600A4CAF6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				849F7B68298FEE2A009CF77B /* DataStorage.xcdatamodeld */,
+				849F7B71298FF41A009CF77B /* NSManagedObject */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				849F7B6F298FF3EE009CF77B /* WalletModel+CoreDataClass.swift in Sources */,
+				846A8C59299BA23300E832CA /* TabBarController.swift in Sources */,
 				848EC197298187B200E75C68 /* PickerTextField.swift in Sources */,
 				84C180DC296073AF008CE524 /* JsonBalanceModel.swift in Sources */,
 				846ECA8D29730BA900081984 /* AddWalletVC.swift in Sources */,
@@ -397,7 +417,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NV7ZN3QX32;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CryptoBalance/Info.plist;
+				INFOPLIST_FILE = CryptoBalance/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CryptoAct;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -430,7 +450,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NV7ZN3QX32;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CryptoBalance/Info.plist;
+				INFOPLIST_FILE = CryptoBalance/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CryptoAct;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

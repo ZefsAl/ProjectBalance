@@ -29,16 +29,16 @@ class PickerTextField: UITextField, CurrencyPickerProtocol {
         
         self.inputView = currencyPickerView
         
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .systemGray5
-        self.layer.cornerRadius = 12
-        self.textColor = .lightGray
-        self.text = "Not selected"
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .systemGray5
+        layer.cornerRadius = 12
+        textColor = .lightGray
+        text = "Not selected"
         
-        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
-        self.leftViewMode = .always
-        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
-        self.rightViewMode = .always
+        leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        leftViewMode = .always
+        rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        rightViewMode = .always
         
     }
     

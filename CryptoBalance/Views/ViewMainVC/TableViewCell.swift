@@ -66,7 +66,6 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell {
     private func setConstraints() {
-        //        let margin = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             
             iconCC.centerYAnchor.constraint(equalTo: centerYAnchor),

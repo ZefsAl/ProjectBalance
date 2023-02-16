@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.overrideUserInterfaceStyle = .dark
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navController = UINavigationController(rootViewController: MainViewController())
-        window?.rootViewController = navController
+//        let navController = UINavigationController(rootViewController: MainViewController())
+        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
         return true

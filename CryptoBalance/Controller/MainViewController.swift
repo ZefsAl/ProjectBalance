@@ -87,7 +87,8 @@ extension MainViewController {
         
         // MARK: Custom Add Button
         let addButtonView: UIView = {
-            let lable = UILabel(); lable.text = "Add "
+            let lable = UILabel()
+            lable.text = "Add "
             let image = UIImageView(image: UIImage(systemName: "plus"))
             image.tintColor = .white
             
@@ -98,7 +99,7 @@ extension MainViewController {
             stack.translatesAutoresizingMaskIntoConstraints = false
             return stack
         }()
-        // UIBarButtonItem not work решил через UITapGestureRecognizer
+        // UIBarButtonItem - not work решил через - UITapGestureRecognizer
         let gesture = UITapGestureRecognizer(target: self, action: #selector(showModal))
         addButtonView.addGestureRecognizer(gesture)
         let barButtonItem = UIBarButtonItem(customView: addButtonView)
@@ -136,12 +137,12 @@ extension MainViewController: NSFetchedResultsControllerDelegate {
             }
             break;
         case .update:
-            if let indexPath = indexPath {
-                guard let cell = mainTableView.cellForRow(at: indexPath) as? TableViewCell else { return }
-                guard let valObject = fetchResultController.object(at: indexPath) as? WalletModel else { return }
+            if let _ = indexPath {
+//                guard let cell = mainTableView.cellForRow(at: indexPath) as? TableViewCell else { return }
+//                guard let valObject = fetchResultController.object(at: indexPath) as? WalletModel else { return }
                 
-                guard let valNetwork = valObject.network else { return }
-                guard let valBalance = valObject.balance else { return }
+//                guard let valNetwork = valObject.network else { return }
+//                guard let valBalance = valObject.balance else { return }
 //                cell.configure(network: valNetwork, balance: String(valBalance))
                 
             }

@@ -36,7 +36,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
         tf.backgroundColor = .systemGray5
         tf.layer.cornerRadius = 12
         tf.textColor = .white
-        tf.attributedPlaceholder = NSAttributedString(string: "Enter address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        tf.attributedPlaceholder = NSAttributedString(string: "Enter public address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tf.tintColor = .white
         
         // Margins inside

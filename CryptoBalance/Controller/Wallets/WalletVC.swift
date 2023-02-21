@@ -10,7 +10,7 @@ import CoreData
 
 
 
-class MainViewController: UIViewController {
+class WalletVC: UIViewController {
     
     
 // MARK: CoreData Controller
@@ -29,7 +29,6 @@ class MainViewController: UIViewController {
 // MARK: Instances
     let mainTableView = MainTableView()
 
-    
     
 // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -115,7 +114,7 @@ extension MainViewController {
 
 
 // MARK: CoreData Delegate
-extension MainViewController: NSFetchedResultsControllerDelegate {
+extension WalletVC: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         mainTableView.beginUpdates()
     }
@@ -157,7 +156,7 @@ extension MainViewController: NSFetchedResultsControllerDelegate {
 
 
 // MARK: Constraints
-extension MainViewController {
+extension WalletVC {
     private func setConstraints() {
         //        let margin = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
@@ -171,13 +170,13 @@ extension MainViewController {
 
 
 // MARK: UITableViewDelegate
-extension MainViewController: UITableViewDelegate {
+extension WalletVC: UITableViewDelegate {
 }
 
 
 
 // MARK: UITableViewDataSource
-extension MainViewController: UITableViewDataSource {
+extension WalletVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchResultController.sections?.count ?? 0

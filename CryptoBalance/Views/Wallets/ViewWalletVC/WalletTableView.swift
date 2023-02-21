@@ -7,13 +7,13 @@
 
 import UIKit
 
-class MainTableView: UITableView {
+class WalletTableView: UITableView {
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
 
         translatesAutoresizingMaskIntoConstraints = false
-        register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.idTableViewCell)
+        register(WalletTVCell.self, forCellReuseIdentifier: WalletTVCell.idWalletTVCell)
     }
     
     required init?(coder: NSCoder) {

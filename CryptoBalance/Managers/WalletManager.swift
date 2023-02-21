@@ -17,7 +17,7 @@ import Foundation
 
 
 
-class NetworkManager {
+class WalletManager {
     
     func queryBalance(network: String, address: String, completion: @escaping (JsonBalanceModel) -> Void) {
         

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class WalletTVCell: UITableViewCell {
     
-    static var idTableViewCell = "idTableViewCell"
+    static var idWalletTVCell = "idWalletTVCell"
     
     let networkCC: UILabel = {
        let l = UILabel()

@@ -7,8 +7,19 @@
 
 import Foundation
 
-struct SupportedCurrencies: Codable {
-    let name, ticker, network: String
+struct JsonSupportedCurrencies: Codable {
+    let name: String
+    let ticker: String
+    let network: String
     let smartContract: String?
-    let alias: [String]
+    let alias: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case ticker = "ticker"
+        case network = "network"
+        case smartContract = "smartContract"
+        case alias = "alias"
+    }
 }
+

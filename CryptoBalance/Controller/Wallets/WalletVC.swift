@@ -27,23 +27,25 @@ class WalletVC: UIViewController {
     
     
 // MARK: Instances
-    let mainTableView = MainTableView()
+    let walletTableView = WalletTableView()
 
     
 // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         configureNavView()
         setupViews()
         setConstraints()
         
         // Delegate
-        mainTableView.delegate = self
-        mainTableView.dataSource = self
+        walletTableView.delegate = self
+        walletTableView.dataSource = self
         
         
-        fetchResultController.delegate = self // Extension
+        fetchResultController.delegate = self // in Extension
+        
         // do - Так и будет в viewDidLoad ?
         do {
             //Выполнить выборку
@@ -72,14 +74,14 @@ class WalletVC: UIViewController {
     
     
     private func setupViews() {
-        view.addSubview(mainTableView)
+        view.addSubview(walletTableView)
     }
     
 }
 
-extension MainViewController {
+extension WalletVC {
     private func configureNavView() {
-        view.backgroundColor = .black
+//        view.backgroundColor = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         title = "Wallets"
@@ -92,8 +94,6 @@ extension MainViewController {
             image.tintColor = .white
             
             let stack = UIStackView(arrangedSubviews: [lable,image])
-            stack.addSubview(lable)
-            stack.addSubview(image)
             
             stack.translatesAutoresizingMaskIntoConstraints = false
             return stack
@@ -116,10 +116,10 @@ extension MainViewController {
 // MARK: CoreData Delegate
 extension WalletVC: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        mainTableView.beginUpdates()
+        walletTableView.beginUpdates()
     }
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        mainTableView.endUpdates()
+        walletTableView.endUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -127,12 +127,12 @@ extension WalletVC: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let indexPath = newIndexPath {
-                mainTableView.insertRows(at: [indexPath], with: .automatic)
+                walletTableView.insertRows(at: [indexPath], with: .automatic)
             }
             break;
         case .delete:
             if let indexPath = indexPath {
-                mainTableView.deleteRows(at: [indexPath], with: .automatic)
+                walletTableView.deleteRows(at: [indexPath], with: .automatic)
             }
             break;
         case .update:
@@ -160,10 +160,10 @@ extension WalletVC {
     private func setConstraints() {
         //        let margin = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            mainTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            walletTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            walletTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            walletTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            walletTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }
@@ -183,7 +183,6 @@ extension WalletVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return walletArray.count
         if let sections = fetchResultController.sections {
             return sections[section].numberOfObjects
         } else {
@@ -194,7 +193,7 @@ extension WalletVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.idTableViewCell, for: indexPath) as? TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WalletTVCell.idWalletTVCell, for: indexPath) as? WalletTVCell
         
         let valObject = fetchResultController.object(at: indexPath) as? WalletModel
         guard let valNetwork = valObject?.network else { return UITableViewCell()}

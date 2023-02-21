@@ -12,6 +12,7 @@ class WalletTableView: UITableView {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
 
+        backgroundColor = .black
         translatesAutoresizingMaskIntoConstraints = false
         register(WalletTVCell.self, forCellReuseIdentifier: WalletTVCell.idWalletTVCell)
     }

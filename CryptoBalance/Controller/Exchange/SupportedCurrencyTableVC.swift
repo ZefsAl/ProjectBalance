@@ -7,42 +7,28 @@
 
 import UIKit
 
-//protocol
+protocol TableSCDelegate: AnyObject {
+    func getTableValue(network: String)
+}
 
-// Кешировать даные таблицы
-class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+
+class SupportedCurrencyTableVC: UITableViewController {
     
-    func updateSearchResults(for searchController: UISearchController) {
+    
+    weak var tableSCDelegate: TableSCDelegate?
+    
+    var dataJsonSC:[JsonSupportedCurrencies] = []
         
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
-            $0.name.contains(searchText)
-        })
-        tableView.reloadData()
-        
-    }
-    
-    
-    
-    var dataJsonSC:[JsonSupportedCurrencies] = [] {
-        didSet {
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-        }
-    }
     var filteredData: [JsonSupportedCurrencies] = [] {
-        
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        
     }
+    
+    
+    
     
 // MARK: viewDidLoad
     override func viewDidLoad() {
@@ -50,7 +36,9 @@ class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, 
         
         configureNavView()
         
-        tableView.register(ExchangeTVCell.self, forCellReuseIdentifier: ExchangeTVCell.idExchangeTVCell)
+        
+        
+        tableView.register(SupportedCurrensyTVCell.self, forCellReuseIdentifier: SupportedCurrensyTVCell.idExchangeTVCell)
         
         
         let manager = ExchangeManager()
@@ -61,7 +49,7 @@ class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, 
             }
         }
         tableView.dataSource = self
-//        searchBar.delegate = self
+
         
 
         
@@ -74,9 +62,9 @@ class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, 
         
         // MARK: Search Controller
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         
-        searchController.delegate = self
+//        searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -109,7 +97,7 @@ class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ExchangeTVCell.idExchangeTVCell, for: indexPath) as? ExchangeTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SupportedCurrensyTVCell.idExchangeTVCell, for: indexPath) as? SupportedCurrensyTVCell
         
         cell?.configure(setNetwork: filteredData[indexPath.row].network, setName: filteredData[indexPath.row].name)
         
@@ -118,5 +106,24 @@ class SupportedCurrencyTableVC: UITableViewController, UISearchResultsUpdating, 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(filteredData[indexPath.row].network)
+        tableSCDelegate?.getTableValue(network: filteredData[indexPath.row].network)
+
+    }
+    
+}
+
+// MARK: UISearchBarDelegate
+extension SupportedCurrencyTableVC: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        MARK: Filter
+        filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
+            $0.name.contains(searchText)
+        })
+        // Фильтрация плохо работает, нужно сделать .lowercased()
+        // Во первых ищу по .name а не network
+    }
     
 }

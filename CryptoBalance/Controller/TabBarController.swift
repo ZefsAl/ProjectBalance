@@ -16,12 +16,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 //        view.backgroundColor = .systemGroupedBackground
 //        view.backgroundColor = .orange
         self.tabBar.backgroundColor = .quaternarySystemFill
-        let vc1: UIViewController = {
-           let vc = UIViewController()
-            vc.view.backgroundColor = .purple
-            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
-            return vc
-        }()
+
         let vc2: UIViewController = {
            let vc = UIViewController()
             vc.view.backgroundColor = .green
@@ -29,10 +24,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             return vc
         }()
         
-//        tabBarItem =
-        let thirdVC = UINavigationController(rootViewController: MainViewController())
+        let firstVC = UINavigationController(rootViewController: ExchangeVC())
+        firstVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        
+        let thirdVC = UINavigationController(rootViewController: WalletVC())
         thirdVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 2)
         // Прописать каждому свой навигейшн контроллер
-        viewControllers = [vc1,vc2,thirdVC]
+        viewControllers = [firstVC,SupportedCurrencyTableVC(),thirdVC]
     }
 }

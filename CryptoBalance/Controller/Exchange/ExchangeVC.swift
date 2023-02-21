@@ -7,64 +7,96 @@
 
 import UIKit
 
-class ExchangeVC: UIViewController {
+
+
+
+class ExchangeVC: UIViewController, TableSCDelegate {
+    
+    func getTableValue(network: String) {
+        networkLable.text = network
+        currencyButton.lable.text = network
+        print(network)
+    }
+    
+    
 
     // SupportedCurrencies
-    let tableSC = UITableView()
+    let supportedCurrencyTableVC = SupportedCurrencyTableVC()
     
+//    let customButtonView = CurrencyButtonView()
+    
+    
+    
+    
+    
+    let currencyButton: CurrencyButton = {
+       let b = CurrencyButton()
+        b.addTarget(Any.self, action: #selector(btnPressed), for: .touchUpInside)
+        return b
+    }()
+
+    
+    let networkLable: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.text = "TEST"
+        
+        return l
+    }()
+    
+    
+    @objc func btnPressed() {
+        let modalNav = UINavigationController(rootViewController: supportedCurrencyTableVC)
+        self.navigationController?.show(modalNav, sender: AnyObject.self)
+    }
+    
+    
+// MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavView()
         setupViews()
         setConstraints()
-
         
+        
+        // delegate
+        supportedCurrencyTableVC.tableSCDelegate = self
+        
+        
+                
     }
+    
     private func configureNavView() {
-        view.backgroundColor = .orange
+        view.backgroundColor = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        title = "Wallets"
+        title = "Exchange"
         
-        // MARK: Custom Add Button
-        let addButtonView: UIView = {
-            let lable = UILabel()
-            lable.text = "Add "
-            let image = UIImageView(image: UIImage(systemName: "plus"))
-            image.tintColor = .white
-            
-            let stack = UIStackView(arrangedSubviews: [lable,image])
-            stack.addSubview(lable)
-            stack.addSubview(image)
-            
-            stack.translatesAutoresizingMaskIntoConstraints = false
-            return stack
-        }()
-        // UIBarButtonItem - not work решил через - UITapGestureRecognizer
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(showModal))
-        addButtonView.addGestureRecognizer(gesture)
-        let barButtonItem = UIBarButtonItem(customView: addButtonView)
-        navigationItem.rightBarButtonItem = barButtonItem
     }
     
-    
-    
-
     private func setupViews() {
-//        view.addSubview(mainTableView)
+        view.addSubview(networkLable)
+        view.addSubview(currencyButton)
     }
+    
+    
 
 }
 
+// MARK: Constraints
 extension ExchangeVC {
     private func setConstraints() {
-        //        let margin = view.layoutMarginsGuide
+        let margin = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            mainTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            currencyButton.centerYAnchor.constraint(equalTo: margin.centerYAnchor),
+            currencyButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
+            
+            networkLable.centerYAnchor.constraint(equalTo: margin.centerYAnchor),
+            networkLable.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+
+
         ])
     }
 }

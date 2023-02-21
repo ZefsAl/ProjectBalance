@@ -15,8 +15,6 @@ import Foundation
 //    XpESxaUmonkq8RaLLp46Brx2K39ggQe226 - Dash
 //    3CDJNfdWX8m2NwuGUV3nhXHXEeLygMXoAj - Ltc
 
-
-
 class WalletManager {
     
     func queryBalance(network: String, address: String, completion: @escaping (JsonBalanceModel) -> Void) {

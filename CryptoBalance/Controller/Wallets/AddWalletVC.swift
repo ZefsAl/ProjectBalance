@@ -17,7 +17,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     
 // MARK: Instances
     private var pickerTextField = PickerTextField()
-    let nm = NetworkManager()
+    let nm = WalletManager()
     
     var addButton: UIButton = {
         let b = UIButton()

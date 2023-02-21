@@ -35,13 +35,9 @@ class SupportedCurrensyTVCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
 //        self.translatesAutoresizingMaskIntoConstraints = false // НЕ отключать
-        
         setupViews()
         setConstraints()
-        
-        
     }
     
     private func setupViews() {

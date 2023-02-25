@@ -10,13 +10,10 @@ import Foundation
 
 class ExchangeManager {
     
-    
-//    private let decoder = JSONDecoder()
-//    private let session = URLSession
     private let session = URLSession.shared
     private let key = "VQ3ZyhxRp"
     
-    
+// MARK: GET Supported Currencies
     func getSupportedCurrencies(completion: @escaping ([JsonSupportedCurrencies]) -> Void) {
         let urlString = "https://api.swapzone.io/v1/exchange/currencies"
         guard let url = URL(string: urlString) else { return }
@@ -24,32 +21,97 @@ class ExchangeManager {
         request.setValue(key, forHTTPHeaderField: "x-api-key")
         request.httpMethod = "GET"
         
-//        let decoder = JSONDecoder()
-        
-        
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
-//            print( "getSupportedCurrencies task - fetch data \(String(decoding: data, as: UTF8.self))" )
+//            print( "getSupportedCurrencies task - fetch data \(String(decoding: data, as: UTF8.self))" ) // test
             do {
                 let val = try JSONDecoder().decode([JsonSupportedCurrencies].self, from: data)
-//                print(val)
+//                print(val) - test
                 completion(val)
-                
-                
             } catch {
                 print("Error Decoding: \(error)")
             }
             
             if let error = error {
-                print("Have Error \(error)")
+                print("Error getSupportedCurrencies \(error)")
             }
-
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                switch httpResponse.statusCode {
+                case 100..<200:
+                    print("informational")
+                case 200..<300:
+                    print("success")
+                case 300..<400:
+                    print("redirection")
+                case 400..<500:
+                    print("clientError")
+                case 500..<600:
+                    print("serverError")
+                
+                default:
+                    print("undefined")
+                }
+            }
+            
         }
         task.resume()
     }
     
     
-
+// MARK: GET Rate
+    func getRate() {
+//  https://api.swapzone.io/v1/exchange/get-rate?from=btc&to=doge&amount=0.1&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false
+        
+        let urlString = "https://api.swapzone.io/v1/exchange/get-rate?from=\("btc")&to=\("doge")&amount=\("0.1")&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false"
+        
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        request.setValue(key, forHTTPHeaderField: "x-api-key")
+        request.httpMethod = "GET"
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+//            print( "Get Rate task - fetch data \(String(decoding: data, as: UTF8.self))" ) // test
+            do {
+                let val = try JSONDecoder().decode(JsonGetRate.self, from: data)
+                print(val) // test
+//                completion(val)
+            } catch {
+                print("Error Decoding: \(error)")
+            }
+            
+            if let error = error {
+                print("Error getSupportedCurrencies \(error)")
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                switch httpResponse.statusCode {
+                case 100..<200:
+                    print("informational")
+                case 200..<300:
+                    print("success")
+                case 300..<400:
+                    print("redirection")
+                case 400..<500:
+                    print("clientError")
+                case 500..<600:
+                    print("serverError")
+                
+                default:
+                    print("undefined")
+                }
+            }
+            
+        }
+        task.resume()
+        
+        
+    }
+    
+    
     
 }
 

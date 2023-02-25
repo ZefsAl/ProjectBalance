@@ -7,15 +7,21 @@
 
 import UIKit
 
-protocol TableSCDelegate: AnyObject {
-    func getTableValue(network: String)
+protocol FirstDelegate: AnyObject {
+    func getFirstTableValue(ticker: String)
 }
 
+protocol SecondDelegate: AnyObject {
+    func getSecondTableValue(ticker: String)
+}
 
 class SupportedCurrencyTableVC: UITableViewController {
     
     
-    weak var tableSCDelegate: TableSCDelegate?
+    
+    weak var firstDelegate: FirstDelegate?
+    weak var secondDelegate: SecondDelegate?
+    
     
     var dataJsonSC:[JsonSupportedCurrencies] = []
         
@@ -99,17 +105,23 @@ class SupportedCurrencyTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SupportedCurrensyTVCell.idExchangeTVCell, for: indexPath) as? SupportedCurrensyTVCell
         
-        cell?.configure(setNetwork: filteredData[indexPath.row].network, setName: filteredData[indexPath.row].name)
+        
+//        filteredData[indexPath.row].network.count > 15
+           
+            cell?.configure(setNetwork: filteredData[indexPath.row].ticker.uppercased(), setName: filteredData[indexPath.row].name)
+            
+            guard let cell = cell else { return UITableViewCell() }
+            return cell
         
         
-        guard let cell = cell else { return UITableViewCell() }
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(filteredData[indexPath.row].network)
-        tableSCDelegate?.getTableValue(network: filteredData[indexPath.row].network)
-
+        
+        firstDelegate?.getFirstTableValue(ticker: filteredData[indexPath.row].ticker)
+        secondDelegate?.getSecondTableValue(ticker: filteredData[indexPath.row].ticker)
+        self.dismiss(animated: true)
     }
     
 }
@@ -120,10 +132,10 @@ extension SupportedCurrencyTableVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        MARK: Filter
         filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
-            $0.name.contains(searchText)
+            $0.name.lowercased().contains(searchText.lowercased()) ||
+            $0.ticker.contains(searchText.lowercased())
         })
-        // Фильтрация плохо работает, нужно сделать .lowercased()
-        // Во первых ищу по .name а не network
+        // Вроде работает нормально
     }
     
 }

@@ -30,6 +30,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let thirdVC = UINavigationController(rootViewController: WalletVC())
         thirdVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 2)
         // Прописать каждому свой навигейшн контроллер
-        viewControllers = [firstVC,SupportedCurrencyTableVC(),thirdVC]
+        viewControllers = [firstVC,vc2,thirdVC]
     }
 }

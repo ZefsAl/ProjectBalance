@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		840CE23629A4C4F000FB51AD /* CurrencyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CE23529A4C4F000FB51AD /* CurrencyButtonView.swift */; };
 		840CE23829A4CE6400FB51AD /* ErrorsProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CE23729A4CE6400FB51AD /* ErrorsProject.swift */; };
+		840CE23A29A75CDC00FB51AD /* AmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CE23929A75CDC00FB51AD /* AmountTextField.swift */; };
+		846A7FE229A7C14C00774209 /* JsonGetRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A7FE129A7C14C00774209 /* JsonGetRate.swift */; };
 		846A8C59299BA23300E832CA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A8C58299BA23300E832CA /* TabBarController.swift */; };
 		846ECA8729700AFE00081984 /* WalletTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ECA8629700AFE00081984 /* WalletTableView.swift */; };
 		846ECA892971877700081984 /* WalletTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846ECA882971877700081984 /* WalletTVCell.swift */; };
@@ -28,13 +30,14 @@
 		84C180DC296073AF008CE524 /* JsonBalanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C180DB296073AF008CE524 /* JsonBalanceModel.swift */; };
 		84C180DE2961D082008CE524 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C180DD2961D082008CE524 /* WalletManager.swift */; };
 		84EC249A299F53BD00A4CAF6 /* ExchangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC2499299F53BC00A4CAF6 /* ExchangeManager.swift */; };
-		84EC249C299F57FA00A4CAF6 /* JsonExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC249B299F57FA00A4CAF6 /* JsonExchangeModel.swift */; };
+		84EC249C299F57FA00A4CAF6 /* JsonSupportedCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC249B299F57FA00A4CAF6 /* JsonSupportedCurrencies.swift */; };
 		84EC249E299F5BA300A4CAF6 /* ExchangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC249D299F5BA300A4CAF6 /* ExchangeVC.swift */; };
 		84EC24A6299F688800A4CAF6 /* SupportedCurrensyTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC24A5299F688800A4CAF6 /* SupportedCurrensyTVCell.swift */; };
 		84EC24A8299FE50E00A4CAF6 /* NewTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC24A7299FE50C00A4CAF6 /* NewTestManager.swift */; };
 		84EC24AA299FFD1A00A4CAF6 /* SupportedCurrencyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC24A9299FFD1A00A4CAF6 /* SupportedCurrencyTableVC.swift */; };
 		84EC24AE29A0F7F000A4CAF6 /* Extension_UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC24AD29A0F7F000A4CAF6 /* Extension_UITextField.swift */; };
 		84EC24B029A0F85A00A4CAF6 /* Extension_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC24AF29A0F85A00A4CAF6 /* Extension_UIView.swift */; };
+		C018A0788332B40669453251 /* Pods_CryptoBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752D45979F5E5625D07847A6 /* Pods_CryptoBalance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,8 +54,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		22FFD615F40389DCAFC20108 /* Pods-CryptoBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBalance.release.xcconfig"; path = "Target Support Files/Pods-CryptoBalance/Pods-CryptoBalance.release.xcconfig"; sourceTree = "<group>"; };
+		752D45979F5E5625D07847A6 /* Pods_CryptoBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840CE23529A4C4F000FB51AD /* CurrencyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButtonView.swift; sourceTree = "<group>"; };
 		840CE23729A4CE6400FB51AD /* ErrorsProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsProject.swift; sourceTree = "<group>"; };
+		840CE23929A75CDC00FB51AD /* AmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTextField.swift; sourceTree = "<group>"; };
+		846A7FE129A7C14C00774209 /* JsonGetRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonGetRate.swift; sourceTree = "<group>"; };
 		846A8C58299BA23300E832CA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		846ECA8629700AFE00081984 /* WalletTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableView.swift; sourceTree = "<group>"; };
 		846ECA882971877700081984 /* WalletTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTVCell.swift; sourceTree = "<group>"; };
@@ -74,13 +81,14 @@
 		84C180DB296073AF008CE524 /* JsonBalanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonBalanceModel.swift; sourceTree = "<group>"; };
 		84C180DD2961D082008CE524 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		84EC2499299F53BC00A4CAF6 /* ExchangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeManager.swift; sourceTree = "<group>"; };
-		84EC249B299F57FA00A4CAF6 /* JsonExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonExchangeModel.swift; sourceTree = "<group>"; };
+		84EC249B299F57FA00A4CAF6 /* JsonSupportedCurrencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonSupportedCurrencies.swift; sourceTree = "<group>"; };
 		84EC249D299F5BA300A4CAF6 /* ExchangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeVC.swift; sourceTree = "<group>"; };
 		84EC24A5299F688800A4CAF6 /* SupportedCurrensyTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrensyTVCell.swift; sourceTree = "<group>"; };
 		84EC24A7299FE50C00A4CAF6 /* NewTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestManager.swift; sourceTree = "<group>"; };
 		84EC24A9299FFD1A00A4CAF6 /* SupportedCurrencyTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCurrencyTableVC.swift; sourceTree = "<group>"; };
 		84EC24AD29A0F7F000A4CAF6 /* Extension_UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_UITextField.swift; sourceTree = "<group>"; };
 		84EC24AF29A0F85A00A4CAF6 /* Extension_UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_UIView.swift; sourceTree = "<group>"; };
+		FEBD34F4CF7A374EDDCD5074 /* Pods-CryptoBalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoBalance.debug.xcconfig"; path = "Target Support Files/Pods-CryptoBalance/Pods-CryptoBalance.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C018A0788332B40669453251 /* Pods_CryptoBalance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,23 +121,23 @@
 			path = ViewWalletVC;
 			sourceTree = "<group>";
 		};
-		846ECA822970065300081984 /* Controller */ = {
+		846ECA822970065300081984 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				846A8C58299BA23300E832CA /* TabBarController.swift */,
 				84EC249F299F61E600A4CAF6 /* Exchange */,
 				84EC24A0299F620A00A4CAF6 /* Wallets */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		846ECA832970067600081984 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				84C180DD2961D082008CE524 /* WalletManager.swift */,
-				849F7B6B298FF239009CF77B /* CoreDataManager.swift */,
 				84EC2499299F53BC00A4CAF6 /* ExchangeManager.swift */,
 				84EC24A7299FE50C00A4CAF6 /* NewTestManager.swift */,
+				849F7B6B298FF239009CF77B /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -137,7 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				84C180DB296073AF008CE524 /* JsonBalanceModel.swift */,
-				84EC249B299F57FA00A4CAF6 /* JsonExchangeModel.swift */,
+				84EC249B299F57FA00A4CAF6 /* JsonSupportedCurrencies.swift */,
+				846A7FE129A7C14C00774209 /* JsonGetRate.swift */,
 				846ECA8A297191A600081984 /* SupportResources.swift */,
 			);
 			path = Models;
@@ -166,6 +176,8 @@
 			children = (
 				84C180C4295FD418008CE524 /* CryptoBalance */,
 				84C180C3295FD418008CE524 /* Products */,
+				9DD1F91F98F5539F62203930 /* Pods */,
+				8FE7C80322D70CEB947F7C82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,7 +195,7 @@
 				84C180C5295FD418008CE524 /* AppDelegate.swift */,
 				84C180C7295FD418008CE524 /* SceneDelegate.swift */,
 				846ECA8529700A8000081984 /* Views */,
-				846ECA822970065300081984 /* Controller */,
+				846ECA822970065300081984 /* Controllers */,
 				846ECA832970067600081984 /* Managers */,
 				846ECA842970078200081984 /* Models */,
 				84EC24AC29A0F7A200A4CAF6 /* Extensions */,
@@ -236,6 +248,7 @@
 			children = (
 				84EC24A5299F688800A4CAF6 /* SupportedCurrensyTVCell.swift */,
 				840CE23529A4C4F000FB51AD /* CurrencyButtonView.swift */,
+				840CE23929A75CDC00FB51AD /* AmountTextField.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -258,6 +271,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8FE7C80322D70CEB947F7C82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				752D45979F5E5625D07847A6 /* Pods_CryptoBalance.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9DD1F91F98F5539F62203930 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FEBD34F4CF7A374EDDCD5074 /* Pods-CryptoBalance.debug.xcconfig */,
+				22FFD615F40389DCAFC20108 /* Pods-CryptoBalance.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,10 +295,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84C180D6295FD41B008CE524 /* Build configuration list for PBXNativeTarget "CryptoBalance" */;
 			buildPhases = (
+				3235CCEFAD5B3AF4E3E57719 /* [CP] Check Pods Manifest.lock */,
 				84C180BE295FD418008CE524 /* Sources */,
 				84C180BF295FD418008CE524 /* Frameworks */,
 				84C180C0295FD418008CE524 /* Resources */,
 				848EC1922980C79500E75C68 /* Embed Foundation Extensions */,
+				79299C322F966126FF70BB0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -303,6 +335,8 @@
 				Base,
 			);
 			mainGroup = 84C180B9295FD418008CE524;
+			packageReferences = (
+			);
 			productRefGroup = 84C180C3295FD418008CE524 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -324,6 +358,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3235CCEFAD5B3AF4E3E57719 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoBalance-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79299C322F966126FF70BB0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoBalance/Pods-CryptoBalance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoBalance/Pods-CryptoBalance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoBalance/Pods-CryptoBalance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84C180BE295FD418008CE524 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -331,17 +407,19 @@
 			files = (
 				840CE23829A4CE6400FB51AD /* ErrorsProject.swift in Sources */,
 				840CE23629A4C4F000FB51AD /* CurrencyButtonView.swift in Sources */,
-				84EC249C299F57FA00A4CAF6 /* JsonExchangeModel.swift in Sources */,
+				84EC249C299F57FA00A4CAF6 /* JsonSupportedCurrencies.swift in Sources */,
 				84EC24A8299FE50E00A4CAF6 /* NewTestManager.swift in Sources */,
 				849F7B6F298FF3EE009CF77B /* WalletModel+CoreDataClass.swift in Sources */,
 				846A8C59299BA23300E832CA /* TabBarController.swift in Sources */,
 				84EC24AE29A0F7F000A4CAF6 /* Extension_UITextField.swift in Sources */,
 				848EC197298187B200E75C68 /* PickerTextField.swift in Sources */,
 				84C180DC296073AF008CE524 /* JsonBalanceModel.swift in Sources */,
+				840CE23A29A75CDC00FB51AD /* AmountTextField.swift in Sources */,
 				84EC24A6299F688800A4CAF6 /* SupportedCurrensyTVCell.swift in Sources */,
 				846ECA8D29730BA900081984 /* AddWalletVC.swift in Sources */,
 				84EC24AA299FFD1A00A4CAF6 /* SupportedCurrencyTableVC.swift in Sources */,
 				849F7B70298FF3EE009CF77B /* WalletModel+CoreDataProperties.swift in Sources */,
+				846A7FE229A7C14C00774209 /* JsonGetRate.swift in Sources */,
 				846ECA8729700AFE00081984 /* WalletTableView.swift in Sources */,
 				84C180CA295FD418008CE524 /* WalletVC.swift in Sources */,
 				846ECA8B297191A600081984 /* SupportResources.swift in Sources */,
@@ -488,6 +566,7 @@
 		};
 		84C180D7295FD41B008CE524 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEBD34F4CF7A374EDDCD5074 /* Pods-CryptoBalance.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -521,6 +600,7 @@
 		};
 		84C180D8295FD41B008CE524 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22FFD615F40389DCAFC20108 /* Pods-CryptoBalance.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

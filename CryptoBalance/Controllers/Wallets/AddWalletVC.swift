@@ -9,7 +9,9 @@ import UIKit
 
 class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     
-    var rowVal: Int = 0
+    // Delegate
+    var rowVal: Int = 0 // Где то еще используется и зачем вооще ?
+    
     func didSelect(row: Int) {
         rowVal = row
     }

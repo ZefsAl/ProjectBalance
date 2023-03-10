@@ -41,21 +41,7 @@ class SupportResources {
             return "Not selected"
         }
     }
-//    func returnIconName(string: String) -> String{
-//        switch string {
-//        case "doge":
-//            return "Dogecoin";
-//        case "btc":
-//            return "Bitcoin";
-//        case "ltc":
-//            return "Litecoin";
-//        case "dash":
-//            return "Dash";
-//        default:
-//            return "Not selected"
-//        }
-//    }
-//    func getIcon(string: String) -> 
+ 
     
     func convertSatoshi(_ satohsi: Int) -> Decimal {
         let valOne = Decimal(satohsi)
@@ -64,9 +50,46 @@ class SupportResources {
         return sum
     }
     
-    init(){}
+    func coloredStrind(string: String, color: UIColor) -> NSMutableAttributedString {
+        
+        let colorAttribute = [NSAttributedString.Key.foregroundColor: color]
+        let fontAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
+        
+        let attributedString = NSMutableAttributedString()
+        
+        for letter in string.unicodeScalars {
+//            let newLetter: NSAttributedString
+            let newFont: NSAttributedString
+            
+            if CharacterSet.decimalDigits.contains(letter) {
+                // Цвет
+//                newLetter = NSAttributedString(string: "\(letter)", attributes: colorAttribute)
+                // Шрифт
+                newFont = NSAttributedString(string: "\(letter)", attributes: fontAttribute)
+                
+            } else {
+//                newLetter = NSAttributedString(string: "\(letter)")
+                newFont = NSAttributedString(string: "\(letter)")
+            }
+            
+            attributedString.append(newFont)
+            
+//            attributedString.append(newLetter)
+            
+            
+        }
+        return attributedString
+//        lable.attributedText = attributedString
     
+    }
+    
+    
+    
+    init(){}
 }
 
 
 
+
+
+    

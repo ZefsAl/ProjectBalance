@@ -36,7 +36,7 @@ class WalletVC: UIViewController {
         
         
         configureNavView()
-        setupViews()
+        setUpViews()
         setConstraints()
         
         // Delegate
@@ -73,7 +73,7 @@ class WalletVC: UIViewController {
     }
     
     
-    private func setupViews() {
+    private func setUpViews() {
         view.addSubview(walletTableView)
     }
     
@@ -90,7 +90,10 @@ extension WalletVC {
         let addButtonView: UIView = {
             let lable = UILabel()
             lable.text = "Add "
-            let image = UIImageView(image: UIImage(systemName: "plus"))
+            lable.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            let configImage = UIImage(systemName: "plus",
+                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold))
+            let image = UIImageView(image: configImage)
             image.tintColor = .white
             
             let stack = UIStackView(arrangedSubviews: [lable,image])

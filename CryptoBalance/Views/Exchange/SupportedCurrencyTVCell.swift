@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SupportedCurrensyTVCell: UITableViewCell {
+class SupportedCurrencyTVCell: UITableViewCell {
 
     static var idExchangeTVCell = "idExchangeTVCell"
     
@@ -36,11 +36,11 @@ class SupportedCurrensyTVCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 //        self.translatesAutoresizingMaskIntoConstraints = false // НЕ отключать
-        setupViews()
+        setUpViews()
         setConstraints()
     }
     
-    private func setupViews() {
+    private func setUpViews() {
         addSubview(networkLable)
         addSubview(nameLable)
     }
@@ -57,7 +57,7 @@ class SupportedCurrensyTVCell: UITableViewCell {
 
 }
 
-extension SupportedCurrensyTVCell {
+extension SupportedCurrencyTVCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             

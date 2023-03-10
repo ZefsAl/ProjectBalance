@@ -23,7 +23,8 @@ class SupportedCurrencyTableVC: UITableViewController {
     weak var secondDelegate: SecondDelegate?
     
     
-    var dataJsonSC:[JsonSupportedCurrencies] = []
+    
+    var dataJsonSC: [JsonSupportedCurrencies] = []
         
     var filteredData: [JsonSupportedCurrencies] = [] {
         didSet {
@@ -33,58 +34,43 @@ class SupportedCurrencyTableVC: UITableViewController {
         }
     }
     
-    
-    
-    
 // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavView()
         
-        
-        
-        tableView.register(SupportedCurrensyTVCell.self, forCellReuseIdentifier: SupportedCurrensyTVCell.idExchangeTVCell)
+        tableView.register(SupportedCurrencyTVCell.self, forCellReuseIdentifier: SupportedCurrencyTVCell.idExchangeTVCell)
         
         
         let manager = ExchangeManager()
+        // Данные в таблице дублированны 
         manager.getSupportedCurrencies { jsonSC in
             DispatchQueue.main.async {
                 self.dataJsonSC = jsonSC
                 self.filteredData = self.dataJsonSC
+//                self.filteredData = jsonSC
             }
         }
         tableView.dataSource = self
-
-        
-
-        
     }
     
+    let searchController = UISearchController(searchResultsController: nil)
     private func configureNavView() {
         view.backgroundColor = .systemGray6
         navigationItem.largeTitleDisplayMode = .never
-        title = "Supported Currencies"
+//        title = ""
         
         // MARK: Search Controller
-        let searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchResultsUpdater = self
+        self.navigationItem.titleView = nil
         
-//        searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
-//        searchController.navigationItem.
-//        searchController.searchBar.subviews.first?.subviews.last as? UIButton = .setTitleColor(UIColor.yellow, for: .normal)
-//        searchController.searchBar.appe
-//        searchController.searchBar
         
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
 
-        
-            
-        
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
         self.definesPresentationContext = true
@@ -92,50 +78,51 @@ class SupportedCurrencyTableVC: UITableViewController {
     }
     
     
-    
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredData.count
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return filteredData.count
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SupportedCurrensyTVCell.idExchangeTVCell, for: indexPath) as? SupportedCurrensyTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SupportedCurrencyTVCell.idExchangeTVCell, for: indexPath) as? SupportedCurrencyTVCell
         
-        
-//        filteredData[indexPath.row].network.count > 15
-           
             cell?.configure(setNetwork: filteredData[indexPath.row].ticker.uppercased(), setName: filteredData[indexPath.row].name)
             
             guard let cell = cell else { return UITableViewCell() }
             return cell
         
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(filteredData[indexPath.row].network)
+        
+        print(filteredData[indexPath.row].ticker)
         
         firstDelegate?.getFirstTableValue(ticker: filteredData[indexPath.row].ticker)
         secondDelegate?.getSecondTableValue(ticker: filteredData[indexPath.row].ticker)
+        
+        if searchController.isActive {
+            searchController.dismiss(animated: true)
+        }
         self.dismiss(animated: true)
+   
     }
-    
 }
 
-// MARK: UISearchBarDelegate
+// MARK: Search Bar Delegate
 extension SupportedCurrencyTableVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        MARK: Filter
         filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
-            $0.name.lowercased().contains(searchText.lowercased()) ||
+
+            return $0.name.lowercased().contains(searchText.lowercased()) ||
             $0.ticker.contains(searchText.lowercased())
+
         })
         // Вроде работает нормально
     }
-    
 }

@@ -13,7 +13,10 @@ import Foundation
 //    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh - BTC
 //    1Mz7153HMuxXTuR2R1t78mGSdzaAtNbBWX - BTC
 //    XpESxaUmonkq8RaLLp46Brx2K39ggQe226 - Dash
-//    3CDJNfdWX8m2NwuGUV3nhXHXEeLygMXoAj - Ltc
+//    3CDJNfdWX8m2NwuGUV3nhXHXEeLygMXoAj - Ltc (LTC/BTC)
+//    31yB5p27QWwe2TGJFFQaxCAp26T8dLfPnw - BTC = 0
+//    1FfmbHfnpaZjKFvyi1okTjJJusN455paPH - BTC = ~ 1.20724504
+
 
 class WalletManager {
     
@@ -29,14 +32,14 @@ class WalletManager {
         let decoder = JSONDecoder()
         
         let task = session.dataTask(with: request) { data, response, error in
-            print( "NM task - fetch data \(String(describing: data))" )
+            print( "Wallet task - fetch data \(String(describing: data))" )
             guard let data = data else { return }
             if (error != nil)  {
                 print("have Error in NM")
             } else {
                 do {
                     let val = try decoder.decode(JsonBalanceModel.self, from: data)
-                    // print( "Fetch data decoding! \(val)" ) // TEST
+                     print( "Fetch data decoding! \(val)" ) // TEST
                     completion(val)
                     
                 } catch let error as NSError {

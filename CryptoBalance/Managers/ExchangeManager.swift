@@ -61,10 +61,14 @@ class ExchangeManager {
     
     
 // MARK: GET Rate
-    func getRate() {
+// from: String, to: String, amountFrom: String, completion: @escaping (JsonGetRate) -> Void
+    func getRate(from: String, to: String, amountFrom: String, completion: @escaping (JsonGetRate) -> Void) {
 //  https://api.swapzone.io/v1/exchange/get-rate?from=btc&to=doge&amount=0.1&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false
         
-        let urlString = "https://api.swapzone.io/v1/exchange/get-rate?from=\("btc")&to=\("doge")&amount=\("0.1")&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false"
+        let urlString = "https://api.swapzone.io/v1/exchange/get-rate?from=\(from)&to=\(to)&amount=\(amountFrom)&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false"
+        
+//        let urlString = "https://api.swapzone.io/v1/exchange/get-rate?from=btc&to=doge&amount=0.1&rateType=all&availableInUSA=false&chooseRate=best&noRefundAddress=false"
+        
         
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
@@ -73,11 +77,14 @@ class ExchangeManager {
         
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
-//            print( "Get Rate task - fetch data \(String(decoding: data, as: UTF8.self))" ) // test
+            print( "Get Rate task - fetch data \(String(decoding: data, as: UTF8.self))" ) // test
             do {
                 let val = try JSONDecoder().decode(JsonGetRate.self, from: data)
-                print(val) // test
-//                completion(val)
+                
+                print("DECODED: \(val)") // test
+//                print("DECODED: \(String(describing: val.error))") // test
+                
+                completion(val)
             } catch {
                 print("Error Decoding: \(error)")
             }

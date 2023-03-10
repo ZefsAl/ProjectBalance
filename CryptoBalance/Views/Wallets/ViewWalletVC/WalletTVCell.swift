@@ -35,7 +35,7 @@ class WalletTVCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .black
-        setupViews()
+        setUpViews()
         setConstraints()
     }
     
@@ -47,7 +47,7 @@ class WalletTVCell: UITableViewCell {
     }
     
     
-    private func setupViews() {
+    private func setUpViews() {
         self.addSubview(networkCC)
         self.addSubview(balanceCC)
         self.addSubview(iconCC)

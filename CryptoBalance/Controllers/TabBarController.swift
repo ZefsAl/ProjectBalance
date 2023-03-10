@@ -24,12 +24,22 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             return vc
         }()
         
+        self.tabBar.tintColor = #colorLiteral(red: 1, green: 0.8392156863, blue: 0.2666666667, alpha: 1)
+        
         let firstVC = UINavigationController(rootViewController: ExchangeVC())
-        firstVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        let firstImage = UIImage(systemName: "creditcard.fill")
+        firstVC.tabBarItem = UITabBarItem(title: "Exchange", image: firstImage, tag: 0)
+        
         
         let thirdVC = UINavigationController(rootViewController: WalletVC())
-        thirdVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 2)
+        let thirdImage = UIImage(named: "WalletIcon")
+        thirdVC.tabBarItem = UITabBarItem(title: "Wallet", image: thirdImage, selectedImage: nil)
+        
+        
+        let secondVC = UINavigationController(rootViewController: vc2)
+        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+        
         // Прописать каждому свой навигейшн контроллер
-        viewControllers = [firstVC,vc2,thirdVC]
+        viewControllers = [firstVC,secondVC,thirdVC]
     }
 }

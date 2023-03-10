@@ -11,7 +11,6 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     
     // Delegate
     var rowVal: Int = 0 // Где то еще используется и зачем вооще ?
-    
     func didSelect(row: Int) {
         rowVal = row
     }
@@ -24,8 +23,21 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     var addButton: UIButton = {
         let b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.backgroundColor = .systemGray2
-        b.setTitle("Add", for: .normal)
+        b.backgroundColor = .systemGray3
+        
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.text = "Add"
+        l.textColor = .black
+        l.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        l.isUserInteractionEnabled = false
+        b.addSubview(l)
+        l.centerXAnchor.constraint(equalTo: b.centerXAnchor).isActive = true
+        l.centerYAnchor.constraint(equalTo: b.centerYAnchor).isActive = true
+        
+//        b.setTitle("Add", for: .normal)
+//        b.setTitle
+//        b.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         b.layer.cornerRadius = 12
         
         return b
@@ -57,7 +69,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews()
+        setUpViews()
         setConstraints()
         
         // Validation target's
@@ -73,10 +85,14 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
                 
     }
     
+    // MARK: Configure Nav Item
     func configureNavItem() {
         let dismissButtonView: UIView = {
             let iv = UIImageView()
+            
             iv.image = UIImage(systemName: "xmark.circle.fill")
+//            iv.contentMode = UIView.ContentMode.scaleToFill
+            
             iv.translatesAutoresizingMaskIntoConstraints = false
             iv.tintColor = .systemGray2
             iv.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -93,12 +109,12 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
     }
     
     
-// MARK: FetchRequest
+// MARK: Request queryBalance
     func doFetchRequest() {
         getWalletValue { [weak self] network, address in
             guard let self = self else { return }
             self.nm.queryBalance(network: network, address: address) { jsonBM in
-                
+
                 let walletModel = WalletModel()
                 walletModel.address = jsonBM.address
                 walletModel.balance = "\(SupportResources().convertSatoshi(jsonBM.balance))"
@@ -112,7 +128,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
 // MARK: Button action
     @objc func addButtonPressed() {
         doFetchRequest()
-        print("BTN pressed")
+        print("addButtonPressed")
         self.dismiss(animated: true)
     }
     
@@ -128,29 +144,30 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
         if  filtered >= 9 &&
             (pickerTextField.text != "Not selected" && pickerTextField.text != "") {
             addButton.isEnabled = true
-            addButton.backgroundColor = .systemBlue
+            addButton.backgroundColor = UIColor(named: "PrimaryColor")
             addButton.addTarget(nil, action: #selector(addButtonPressed), for: .touchUpInside)
         } else {
             addButton.isEnabled = false
-            addButton.backgroundColor = .systemGray2
+            addButton.backgroundColor = .systemGray3
         }
         
     }
     
     
     
-    
+    // MARK: Completion
     func getWalletValue(completion: @escaping (_ network: String, _ address: String) -> Void ) {
         guard let forShortVal = pickerTextField.text else { return }
+        // Костыль для запроса
         let resource = SupportResources().getShortNetwork(string: forShortVal)
         let netvorkVal = resource
-        // Костыль для запроса ⌃
+        
         guard let addressVal = addressTextField.text else { return }
         completion(netvorkVal, addressVal)
     }
     
     
-    private func setupViews() {
+    private func setUpViews() {
         view.addSubview(addButton)
         view.addSubview(addressTextField)
         view.addSubview(pickerTextField)
@@ -167,16 +184,16 @@ extension AddWalletVC {
             pickerTextField.topAnchor.constraint(equalTo: margin.topAnchor, constant: 40),
             pickerTextField.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             pickerTextField.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
-            pickerTextField.heightAnchor.constraint(equalToConstant: 50),
+            pickerTextField.heightAnchor.constraint(equalToConstant: 60),
             
             addressTextField.topAnchor.constraint(equalTo: pickerTextField.bottomAnchor, constant: 16),
             addressTextField.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             addressTextField.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
-            addressTextField.heightAnchor.constraint(equalToConstant: 50),
+            addressTextField.heightAnchor.constraint(equalToConstant: 60),
             
             addButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 24),
-            addButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            addButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            addButton.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 16),
+            addButton.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant:  -16),
             addButton.heightAnchor.constraint(equalToConstant: 50),
             
         ])

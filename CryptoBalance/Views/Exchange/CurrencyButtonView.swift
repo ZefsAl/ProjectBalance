@@ -16,15 +16,20 @@ class CurrencyButton: UIButton {
         super.init(frame: frame)
         
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.contentMode = .scaleToFill
         
         layer.cornerRadius = 12
         layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner ]
-        backgroundColor = .systemGray4
+        backgroundColor = .systemGray3
         
         lable.text = "Select"
+        lable.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         lable.textAlignment = .center
         
-        let iv = UIImageView(image: UIImage(systemName: "chevron.up.chevron.down"))
+        let configImage = UIImage(systemName: "chevron.up.chevron.down",
+                                  withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold))
+        let iv = UIImageView(image: configImage)
+        iv.contentMode = UIView.ContentMode.scaleAspectFill
         iv.tintColor = .white
         
         
@@ -38,16 +43,9 @@ class CurrencyButton: UIButton {
         
         self.addSubview(stack)
 
-        lable.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
 
         
-        stack.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12).isActive = true
-        stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12).isActive = true
-        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         
-        self.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        self.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
         
 
     }
@@ -56,3 +54,5 @@ class CurrencyButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+

@@ -22,6 +22,7 @@ class PickerTextField: UITextField, CurrencyPickerProtocol {
     }
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,11 +35,11 @@ class PickerTextField: UITextField, CurrencyPickerProtocol {
         layer.cornerRadius = 12
         textColor = .lightGray
         text = "Not selected"
-        
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftViewMode = .always
         rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         rightViewMode = .always
+        
         
     }
     

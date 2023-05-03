@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import IQKeyboardManager
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,16 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        IQKeyboardManager.shared().isEnableAutoToolbar = false
-//        IQKeyboardManager.shared().toolbarDoneBarButtonItemText = "Done"
-        IQKeyboardManager.shared().toolbarTintColor = .white
-        IQKeyboardManager.shared().shouldShowToolbarPlaceholder = false
-        IQKeyboardManager.shared().previousNextDisplayMode = .alwaysHide
-        
-        
-        
+//        UINavigationBar.appearance().backgroundColor = UIColor.green
+
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = TabBarController()
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
         
         return true

@@ -1,5 +1,5 @@
 //
-//  ExchangeTableVC.swift
+//  SupportedCurrencyTableVC.swift
 //  CryptoBalance
 //
 //  Created by Serj on 17.02.2023.
@@ -56,6 +56,8 @@ class SupportedCurrencyTableVC: UITableViewController {
     }
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    // MARK: Configure Nav View
     private func configureNavView() {
         view.backgroundColor = .systemGray6
         navigationItem.largeTitleDisplayMode = .never
@@ -67,6 +69,7 @@ class SupportedCurrencyTableVC: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.tintColor = .white
         
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
@@ -90,19 +93,32 @@ class SupportedCurrencyTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SupportedCurrencyTVCell.idExchangeTVCell, for: indexPath) as? SupportedCurrencyTVCell
         
-            cell?.configure(setNetwork: filteredData[indexPath.row].ticker.uppercased(), setName: filteredData[indexPath.row].name)
-            
-            guard let cell = cell else { return UITableViewCell() }
-            return cell
+        
+        if
+            let networkVal = filteredData[indexPath.row].ticker?.uppercased(),
+            let nameVal = filteredData[indexPath.row].name
+        {
+            cell?.configure(setNetwork: networkVal, setName: nameVal)
+        }
+        
+        
+        
+        guard let cell = cell else { return UITableViewCell() }
+        return cell
         
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(filteredData[indexPath.row].ticker)
         
-        firstDelegate?.getFirstTableValue(ticker: filteredData[indexPath.row].ticker)
-        secondDelegate?.getSecondTableValue(ticker: filteredData[indexPath.row].ticker)
+        guard
+            let networkVal = filteredData[indexPath.row].ticker
+        else { return }
+        
+        print(networkVal)
+        
+        firstDelegate?.getFirstTableValue(ticker: networkVal)
+        secondDelegate?.getSecondTableValue(ticker: networkVal)
         
         if searchController.isActive {
             searchController.dismiss(animated: true)
@@ -117,12 +133,22 @@ extension SupportedCurrencyTableVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        MARK: Filter
-        filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
-
-            return $0.name.lowercased().contains(searchText.lowercased()) ||
-            $0.ticker.contains(searchText.lowercased())
-
+//        filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter ({
+//            return $0.name.lowercased().contains(searchText.lowercased()) ||
+//            $0.ticker.contains(searchText.lowercased())
+//            // Вроде работает нормально
+//        })
+        
+        filteredData = searchText.isEmpty ? dataJsonSC : dataJsonSC.filter({ value in
+            if
+                let one = value.name?.lowercased().contains(searchText.lowercased()),
+                let two = value.ticker?.contains(searchText.lowercased())
+            {
+                return one || two
+            }
+            
+            return false
         })
-        // Вроде работает нормально
+        
     }
 }

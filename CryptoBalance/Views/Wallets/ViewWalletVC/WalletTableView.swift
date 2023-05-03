@@ -8,11 +8,24 @@
 import UIKit
 
 class WalletTableView: UITableView {
-
+    override var contentSize: CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+    }
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
 
-        backgroundColor = .black
+        backgroundColor = .systemGray6
+        self.layer.cornerRadius = 12
+        self.isScrollEnabled = false
+        
         translatesAutoresizingMaskIntoConstraints = false
         register(WalletTVCell.self, forCellReuseIdentifier: WalletTVCell.idWalletTVCell)
     }

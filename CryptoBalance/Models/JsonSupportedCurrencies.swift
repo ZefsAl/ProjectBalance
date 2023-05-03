@@ -8,9 +8,9 @@
 import Foundation
 
 struct JsonSupportedCurrencies: Codable {
-    let name: String
-    let ticker: String
-    let network: String
+    let name: String?
+    let ticker: String?
+    let network: String?
     let smartContract: String?
     let alias: [String]?
     

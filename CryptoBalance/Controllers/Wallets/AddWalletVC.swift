@@ -71,6 +71,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
         
         setUpViews()
         setConstraints()
+        setDismissNavButtonItem(selectorStr: Selector(("dismissButtonAction")))
         
         // Validation target's
         pickerTextField.addTarget(self, action: #selector(validationFields), for: .allEditingEvents)
@@ -80,8 +81,8 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
         view.backgroundColor = .systemGray6
         navigationItem.title = "Add wallet"
         navigationItem.largeTitleDisplayMode = .never
-        // Item
-        configureNavItem()
+        
+        
                 
     }
     
@@ -120,6 +121,7 @@ class AddWalletVC: UIViewController, CurrencyPickerProtocol {
                 walletModel.balance = "\(SupportResources().convertSatoshi(jsonBM.balance))"
                 walletModel.dateSort = Date()
                 walletModel.network = network
+                walletModel.finalNTX = String(jsonBM.finalNTX)
                 CoreDataManager.shared.saveContext()
             }
         }

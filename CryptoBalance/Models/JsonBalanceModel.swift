@@ -17,7 +17,7 @@ struct JsonBalanceModel: Codable {
     let finalBalance: Int
     let nTx: Int
     let unconfirmedNTx: Int
-    let finalNTx: Int
+    let finalNTX: Int
 
     enum CodingKeys: String, CodingKey {
         case address
@@ -28,6 +28,6 @@ struct JsonBalanceModel: Codable {
         case finalBalance = "final_balance"
         case nTx = "n_tx"
         case unconfirmedNTx = "unconfirmed_n_tx"
-        case finalNTx = "final_n_tx"
+        case finalNTX = "final_n_tx"
     }
 }

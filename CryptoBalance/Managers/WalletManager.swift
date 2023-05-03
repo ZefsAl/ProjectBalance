@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Классические запросы, до 3 запросов/сек и 200 запросов/час
 // https://api.blockcypher.com/v1/btc/main/addrs/1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD/balance
 
 //    DFundmtrigzA6E25Swr2pRe4Eb79bGP8G1 - DOGE
@@ -26,20 +27,22 @@ class WalletManager {
         
         let session = URLSession.shared
         
-        let request = URLRequest(url: url)
-        //        request.httpMethod = "GET"
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         
         let decoder = JSONDecoder()
         
         let task = session.dataTask(with: request) { data, response, error in
-            print( "Wallet task - fetch data \(String(describing: data))" )
             guard let data = data else { return }
+            print( "Wallet task - fetch data \(String(decoding: data, as: UTF8.self))" ) // test
+            
+            
             if (error != nil)  {
-                print("have Error in NM")
+                print("have Error in NetworkManager")
             } else {
                 do {
                     let val = try decoder.decode(JsonBalanceModel.self, from: data)
-                     print( "Fetch data decoding! \(val)" ) // TEST
+//                     print( "Fetch data decoding! \(val)" ) // TEST
                     completion(val)
                     
                 } catch let error as NSError {

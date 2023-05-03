@@ -31,8 +31,6 @@ class CurrencyButtonV2: UIButton {
 //        lable.minimumScaleFactor = 0.5;
 //        lable.adjustsFontSizeToFitWidth = true
         
-        
-        
 //        if let lableCount = lable.text?.count{
 //            if lableCount >= 7 {
 //                lable.font = UIFont.systemFont(ofSize: 12, weight: .black)
@@ -42,7 +40,6 @@ class CurrencyButtonV2: UIButton {
 //                lable.textColor = .red
 //            }
 //        }
-        
         
         
         
@@ -60,7 +57,6 @@ class CurrencyButtonV2: UIButton {
         self.addSubview(stack)
         
         lable.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
-
         
         stack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         stack.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -68,14 +64,13 @@ class CurrencyButtonV2: UIButton {
         self.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         
+        //  для отступа от текста
 //        lable.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
 //        stack.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
 //        stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12).isActive = true
 //        stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12).isActive = true
 //        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
 //        self.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
-        
-        
     }
     
     required init?(coder: NSCoder) {

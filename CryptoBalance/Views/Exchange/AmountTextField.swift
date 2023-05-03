@@ -25,7 +25,7 @@ class AmountTextField: UITextField, UITextFieldDelegate {
         iv.centerYAnchor.constraint(equalTo: b.centerYAnchor).isActive = true
         iv.leadingAnchor.constraint(equalTo: b.leadingAnchor).isActive = true
         
-        b.addTarget(Any?.self, action: #selector(cancelAction), for: .touchUpInside)
+        b.addTarget(Any?.self, action: #selector(clearAction), for: .touchUpInside)
         
         b.isHidden = true
         b.alpha = 0
@@ -37,7 +37,6 @@ class AmountTextField: UITextField, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // 
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemGray5
         layer.cornerRadius = 12
@@ -55,22 +54,21 @@ class AmountTextField: UITextField, UITextFieldDelegate {
         rightView = rightCancelButton
         rightViewMode = .always
         
-        
         self.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         self.keyboardType = .numberPad
-        self.addDoneButtonOnKeyboard()
+        self.customAccessoryViewOnKeyboard()
         
         
     }
     
     // MARK: Cancel Action
-    @objc func cancelAction() {
+    @objc func clearAction() {
 //        print("Clear")
         self.text = ""
     }
     
-    // MARK: Animate
+    // MARK: Animate, Delegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         self.rightCancelButton.isHidden = false
@@ -81,7 +79,7 @@ class AmountTextField: UITextField, UITextFieldDelegate {
 
     }
     
-    // MARK: Animate
+    // MARK: Animate, Delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
 
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) {
@@ -90,21 +88,38 @@ class AmountTextField: UITextField, UITextFieldDelegate {
             self.rightCancelButton.isHidden = true
         }
 
+        
+        
+        
     }
+    
+    
+    
     
     
     // MARK: Input Validation Delegate 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        
+                
         guard let newTextField = textField.text else { return false }
+        
+        // Replace "," and " "
+        var text = newTextField + string
+        if text.contains(",") || text.contains(" ")  {
+
+            if text.contains(" ") {
+                text = text.replacingOccurrences(of: " ", with: "")
+            }
+            
+            textField.text = text.replacingOccurrences(of: ",", with: ".")
+        }
+        
         
         if string == "," {
             return false
         }
         // Так выглядит ограничение для колличества 1 точки
         if string == "." {
-            if  newTextField.contains(".") {
+            if newTextField.contains(".") {
                 return false
             }
         }
@@ -112,15 +127,13 @@ class AmountTextField: UITextField, UITextFieldDelegate {
         if !string.isEmpty {
             let text = newTextField as NSString
             let newText = text.replacingCharacters(in: range, with: string)
-            if let regex = try? NSRegularExpression(pattern: "^[0-9]{0,16}$*((\\.|,)[0-9]{0,5})?$", options: .caseInsensitive) {
+            if let regex = try? NSRegularExpression(pattern: "^[0-9]{0,16}$*((\\.|,)[0-9]{0,16})?$", options: .caseInsensitive) {
                 return regex.numberOfMatches(in: newText, options: .reportProgress, range: NSRange(location: 0, length: (newText as NSString).length)) > 0
             }
             return false
         }
         return true
     }
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -131,7 +144,7 @@ class AmountTextField: UITextField, UITextFieldDelegate {
 // MARK: Extension Accessory View
 extension AmountTextField {
     
-    func addDoneButtonOnKeyboard() {
+    func customAccessoryViewOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
         doneToolbar.backgroundColor = .systemGray5
@@ -174,7 +187,7 @@ extension AmountTextField {
     }
     
     @objc func doneButtonAction() {
-        self.resignFirstResponder()
+        self.endEditing(true)
     }
     
     @objc func dotButtonAction() {

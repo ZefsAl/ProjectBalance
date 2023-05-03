@@ -22,7 +22,6 @@ class CoreDataManager {
     func entityName(name: String) -> NSEntityDescription {
         guard let returnVal = NSEntityDescription.entity(forEntityName: name, in: context) else { return NSEntityDescription() }
         return returnVal
-        
     }
     
 // MARK: CoreData

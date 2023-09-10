@@ -2,8 +2,9 @@
 
 - UIKit, MVC
 - GCD, DispatchQueue, DispatchSemaphore
+- CoreData
 - Auto Layout
-- URLSession (REST api)
+- URLSession, Codable (REST api)
 - CocoaPods, spm
 
 ### Presentation [Youtube](https://youtu.be/6LLr8PwwIrg).

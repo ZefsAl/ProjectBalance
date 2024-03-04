@@ -7,7 +7,7 @@
 
 import UIKit
 
-class qwerrasdsfafQWas: UIViewController, FirstDelegate, SecondDelegate {
+class ExchangeVC: UIViewController, FirstDelegate, SecondDelegate {
     
     // MARK: Scroll View Tracking
     private var lastVelocityYSign = 0
